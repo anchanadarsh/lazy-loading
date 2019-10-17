@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>lazy Loading</title>
+    <style>
+        img {
+            margin: auto;
+            margin-top: 200px;
+            margin-bottom: 200px;
+            display: block;
+        }
+
+    </style>
+</head>
+
+<body>
+    <img data-src="img/exp-1479-min.jpg" alt="">
+    <img data-src="img/exp-1805-min.jpg" alt="">
+    <img data-src="img/exp-1833-min.jpg" alt="">
+    <img data-src="img/exp-2036-min.jpg" alt="">
+    <img data-src="img/exp-2137-min.jpg" alt="">
+    <img data-src="img/exp-2177-min.jpg" alt="">
+    <img data-src="img/exp-2331-min.jpg" alt="">
+    <img data-src="img/exp-2369-min.jpg" alt="">
+    <img data-src="img/exp-2441-min.jpg" alt="">
+    <img data-src="img/exp-2602-min.jpg" alt="">
+    <img data-src="img/exp-2754-min.jpg" alt="">
+
+    <script src="js/bound.js"></script>
+
+    <script>
+        var images = document.querySelectorAll('img');
+
+        var boundary = bound({
+            margins: {
+                bottom: 100
+            }
+        });
+
+        var onEnter = function onEnter(image) {
+            return function() {
+                image.src = image.dataset.src;
+            };
+        };
+
+        images.forEach(function(image) {
+            boundary.watch(image, onEnter(image));
+        });
+
+    </script>
+</body>
+
+</html>
